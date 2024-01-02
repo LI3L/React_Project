@@ -13,9 +13,11 @@ const PlayersList = observer(({ players: playersState, Game }) => {
     if(Game.playersInGame.find(p=>p.id==player.id)){
       Game.removePlayer(player.id);
     }
-    else{
-
+    else if(Game.playersInGame.length<=4){
       Game.addToGame(playersState.players.find(p=>p.id==player.id));
+    }
+    else{
+      alert("the game is full");
     }
   }
 

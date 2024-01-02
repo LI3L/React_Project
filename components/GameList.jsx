@@ -15,11 +15,10 @@ const PlayersList = observer(({ gameListState }) => {
   return (
     <div>
       {gameListState.playersInGame.map(p => 
-      <>
+      <>2
         <BigHead {...p.img} style={{height: "50px"}} />
         <div style={{display:"flex" ,alignItems:"center", justifyContent:"space-between"}}>
           <h4>{p.name}</h4>
-          <button onClick={() => removePlayer(p.id)} >X</button>
         </div>
       </>
       )}
