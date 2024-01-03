@@ -5,8 +5,9 @@ import { BigHead } from "@bigheads/core";
 // import TodoView from "./TodoView";
 
 const PlayersList = observer(({ players: playersState, Game }) => {
-  const removePlayer = (id) => {
-    playersState.removePlayer(id);
+  const removePlayer = (p) => {
+    playersState.removePlayer(p.id);
+    Game.removePlayer(p.id);
   };
 
   const checked=(player)=>{
@@ -27,8 +28,8 @@ const PlayersList = observer(({ players: playersState, Game }) => {
         <div style={{display:"flex" ,alignItems:"center", justifyContent:"space-between"}}>
           <BigHead {...p.img} style={{height: "50px"}} />
           <h4>{p.name}</h4>
-          <input type="checkbox"  onClick={()=>checked(p)} />
-          <button onClick={() => removePlayer(p.id)} >X</button>
+          <input type="checkbox"   onClick={()=>checked(p)} />
+          <button onClick={() => removePlayer(p)} >X</button>
 
 
         </div>

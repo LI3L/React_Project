@@ -4,7 +4,7 @@ import { makeAutoObservable } from "mobx";
 import { Players } from "../actions/Players.js";
 import { Game } from "../actions/Game.js";
 import PlayersList from "../components/PlayersList.jsx";
-import GameList from "../components/GameList.jsx";
+import GameList from "../components/Game.jsx";
 
 
 const wordList=["apple","banana","home","dog","class"];
@@ -30,11 +30,12 @@ export default function List() {
                     </div>
                     <PlayersList players={playersState} Game={gameListState}/>
                 </div>
-                <div style={{flex:"3",border:"1px solid black"}}>
+                <div style={{flex:"3",border:"1px solid black" }}>
                     <h1>Game</h1> 
                     <div style={{display:"flex"}}>
                         <GameList gameListState={gameListState} />
                     </div>
+                        <button>blah</button>
 
                 </div>
             </div>

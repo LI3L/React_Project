@@ -11,12 +11,17 @@ export class Game {
       addPlayer: action,
       removePlayer: action,
       addToGame: action,
+      guessLetter:action,
     });
     autorun(() => console.log(this.playersInGame));
   }
 
+  guessLetter(player) {
+    return String.fromCharCode(Math.floor(Math.random() * (122 - 97 + 1)) + 97);
+  } 
+
   addPlayer(player) {
-    this.playersInGame.push(player);
+    this.playersInGame.push({...player,chars:"",score:0});
  }
   
   removePlayer(playerId) {
