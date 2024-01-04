@@ -12,8 +12,17 @@ export class Game {
       removePlayer: action,
       addToGame: action,
       guessLetter:action,
+      addLetter:action,
+      addScore:action,
     });
     autorun(() => console.log(this.playersInGame));
+  }
+  addScore(player){
+    this.playersInGame.find((p)=>p.id===player.id).score+=1;
+    // player.score+=1;
+  }
+  addLetter(player,letter){
+    player.chars+=letter+", ";
   }
 
   guessLetter(player) {
