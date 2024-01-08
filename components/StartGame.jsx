@@ -13,11 +13,18 @@ const StartGame = observer(({ gameListState }) => {
       style={{
         display: "flex",
         alignItems: "center",
+        flexDirection: "column",
         justifyContent: "space-between",
       }}
     >
-      <button onClick={gameListState.startGame}>Start Game</button>
       <h2>{gameListState.wordToGuess}</h2>
+      <button
+        onClick={() => {
+          gameListState.startGame();
+        }}
+      >
+        Start Game
+      </button>
       {/* <UsedLetters letter={Word} /> */}
     </div>
   );

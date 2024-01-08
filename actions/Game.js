@@ -37,6 +37,7 @@ export class Game {
     this.intervalId = setInterval(() => {
       const player = this.getRandomPlayer();
       const letter = this.guessLetter(player);
+      console.log("letter", letter);
       if (this.checkLetter(letter)) {
         this.addScore(player);
         let wordArray = this.wordToGuess.split(" ");
@@ -57,17 +58,22 @@ export class Game {
   }
 
   startGame() {
+    // playersInGame.map((player) => {
+    //   player.chars = "";
+    //   player.score = 0;
+    // });
     this.createRandomWord();
     this.createWordToGuess();
     this.createInterval();
   }
 
   createRandomWord() {
+    console.log("interval created");
     this.randomWord = Words[Math.floor(Math.random() * Words.length)];
   }
 
   checkEndGame() {
-    if (this.wordToGuess.includes("_")) return false;
+    if (!this.wordToGuess.includes("_")) return false;
     return true;
   }
 
