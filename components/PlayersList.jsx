@@ -4,17 +4,17 @@ import { BigHead } from "@bigheads/core";
 
 // import TodoView from "./TodoView";
 
-const PlayersList = observer(({ players: playersState, Game }) => {
+const PlayersList = observer(({ players: playersState, gameListState }) => {
   const removePlayer = (p) => {
     playersState.removePlayer(p.id);
-    Game.removePlayer(p.id);
+    gameListState.removePlayer(p.id);
   };
 
   const checked = (player) => {
-    if (Game.playersInGame.find((p) => p.id == player.id)) {
-      Game.removePlayer(player.id);
-    } else if (Game.playersInGame.length <= 4) {
-      Game.addToGame(playersState.players.find((p) => p.id == player.id));
+    if (gameListState.playersInGame.find((p) => p.id == player.id)) {
+      gameListState.removePlayer(player.id);
+    } else if (gameListState.playersInGame.length <= 4) {
+      gameListState.addToGame(playersState.players.find((p) => p.id == player.id));
     } else {
       alert("the game is full");
     }

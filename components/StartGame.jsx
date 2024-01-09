@@ -2,12 +2,6 @@ import { observer } from "mobx-react-lite";
 import UsedLetters from "./UsedLetters";
 
 const StartGame = observer(({ gameListState }) => {
-  let intervalId = null;
-
-  const startGame2 = () => {
-    intervalId = setInterval(startGame, 1000);
-  };
-
   return (
     <div
       style={{
@@ -17,7 +11,7 @@ const StartGame = observer(({ gameListState }) => {
         justifyContent: "space-between",
       }}
     >
-      <h2>{gameListState.wordToGuess}</h2>
+      <h2>{gameListState.wordToGuess.split("").join(" ")}</h2>
       <button
         onClick={() => {
           gameListState.startGame();

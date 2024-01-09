@@ -16,7 +16,6 @@ export class Game {
       intervalId: observable,
       randomWord: observable,
       playersInGame: observable,
-      addPlayer: action,
       removePlayer: action,
       addToGame: action,
       guessLetter: action,
@@ -40,13 +39,14 @@ export class Game {
       console.log("letter", letter);
       if (this.checkLetter(letter)) {
         this.addScore(player);
-        let wordArray = this.wordToGuess.split(" ");
+        console.log("wordToGuess", this.wordToGuess);
+        let wordArray = this.wordToGuess.split("");
         for (let i = 0; i < this.randomWord.length; i++) {
           if (this.randomWord[i] === letter) {
             wordArray[i] = letter;
           }
         }
-        this.wordToGuess = wordArray.join(" ");
+        this.wordToGuess = wordArray.join("");
       }
       this.addLetter(player, letter);
 
@@ -73,7 +73,7 @@ export class Game {
   }
 
   checkEndGame() {
-    if (!this.wordToGuess.includes("_")) return false;
+    if (this.wordToGuess.includes("_")) return false;
     return true;
   }
 
@@ -83,7 +83,7 @@ export class Game {
   }
 
   createWordToGuess() {
-    this.wordToGuess = this.randomWord.split("").map((letter) => "_ ");
+    this.wordToGuess = this.randomWord.split("").map((letter) => "_").join("");
   }
 
   getRandomPlayer() {
@@ -101,15 +101,13 @@ export class Game {
   }
 
   guessLetter(player) {
-    const letter = String.fromCharCode(
+    let letter="";
+    while(player.chars.includes(letter))
+     letter = String.fromCharCode(
       Math.floor(Math.random() * (122 - 97 + 1)) + 97
     );
     this.addLetter(player, letter);
     return letter;
-  }
-
-  addPlayer(player) {
-    this.playersInGame.push({ ...player, chars: "", score: 0 });
   }
 
   removePlayer(playerId) {
@@ -119,6 +117,6 @@ export class Game {
   }
 
   addToGame(playerToPlay) {
-    this.playersInGame.push(playerToPlay);
+    this.playersInGame.push({ ...playerToPlay, chars: "", score: 0 });
   }
 }
