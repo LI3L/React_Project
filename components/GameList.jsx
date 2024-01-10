@@ -20,17 +20,10 @@ const GameList = observer(({ gameListState }) => {
             border: "1px solid black",
           }}
         >
-          <BigHead
-            {...p.img}
-            style={{ height: "150px", border: "1px solid black" }}
-          />
-          <h3 style={{ border: "1px solid black", marginBottom: -20 }}>
-            {p.name}
-          </h3>
-          <h4 style={{ border: "1px solid black", marginBottom: -20 }}>
-            score: {p.score}
-          </h4>
-          <h4 style={{ border: "1px solid black" }}>letters:{p.chars}</h4>
+          <BigHead {...p.img} style={{ height: "150px" }} />
+          <h3 style={{ marginBottom: -20 }}>{p.name}</h3>
+          <h4 style={{ marginBottom: -20 }}>score: {p.score}</h4>
+          <h4>letters:{p.chars}</h4>
         </div>
       ))}
       {/* <small> (double-click a plater to edit)</small> */}

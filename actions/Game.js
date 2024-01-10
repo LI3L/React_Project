@@ -36,13 +36,13 @@ export class Game {
     this.intervalId = setInterval(() => {
       const player = this.getRandomPlayer();
       const letter = this.guessLetter(player);
-      console.log("letter", letter);
       if (this.checkLetter(letter)) {
-        this.addScore(player);
+        
         console.log("wordToGuess", this.wordToGuess);
         let wordArray = this.wordToGuess.split("");
         for (let i = 0; i < this.randomWord.length; i++) {
           if (this.randomWord[i] === letter) {
+            this.addScore(player);
             wordArray[i] = letter;
           }
         }
@@ -58,10 +58,12 @@ export class Game {
   }
 
   startGame() {
-    // playersInGame.map((player) => {
-    //   player.chars = "";
-    //   player.score = 0;
-    // });
+    if(this.playersInGame){
+      this.playersInGame.map((player) => {
+        player.chars = "";
+        player.score = 0;
+      });
+    }
     this.createRandomWord();
     this.createWordToGuess();
     this.createInterval();
@@ -83,7 +85,10 @@ export class Game {
   }
 
   createWordToGuess() {
-    this.wordToGuess = this.randomWord.split("").map((letter) => "_").join("");
+    this.wordToGuess = this.randomWord
+      .split("")
+      .map((letter) => "_")
+      .join("");
   }
 
   getRandomPlayer() {
@@ -97,13 +102,13 @@ export class Game {
     // player.score+=1;
   }
   addLetter(player, letter) {
+    if(player.chars.includes(letter)) return;
     player.chars += letter + ", ";
   }
 
   guessLetter(player) {
-    let letter="";
-    while(player.chars.includes(letter))
-     letter = String.fromCharCode(
+    let letter = "";
+    letter = String.fromCharCode(
       Math.floor(Math.random() * (122 - 97 + 1)) + 97
     );
     this.addLetter(player, letter);
